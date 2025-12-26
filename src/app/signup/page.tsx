@@ -49,25 +49,16 @@ export default function SignupPage() {
     };
 
     return (
-        <div className="signup h-screen w-screen overflow-hidden flex font-sans" style={{ backgroundColor: 'transparent' }}>
-            <div className="hidden lg:block w-1/2 h-full relative overflow-hidden">
-                <img
-                    src="/Rectangle 7.png"
-                    alt="KeyTyping Illustration"
-                    className="w-full h-full object-cover object-center"
-                />
+        <div className="signup h-screen w-screen overflow-hidden flex font-sans justify-center items-center " style={{ backgroundColor: 'transparent' }}>
+            <div className="">
+                <a href="/" className="absolute top-10 left-10 text-3xl font-light   text-white mb-2">Key <span className="text-[#ef4444] font-bold font-script italic">Typing</span></a>
+                <h2 className="text-5xl font-light rotate-[-45deg] text-white mb-2">
+                    Join us for <span className="text-[#ef4444] font-bold font-script italic">speed Time</span>
+                </h2>
             </div>
-
-            <div className="w-full lg:w-1/2 h-full flex items-center justify-center p-8 relative">
+            <div className="w-full lg:w-1/2 h-full flex items-center justify-center mt-20  relative">
                 <div className="w-full max-w-md">
-
-                    <div className="text-center mb-10">
-                        <h2 className="text-4xl font-light text-white mb-2">
-                            Join us for <span className="text-[#ef4444] font-bold font-script italic">speed Time</span>
-                        </h2>
-                    </div>
-
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-10 ">
                         {error && <div className="text-red-500 text-center">{error}</div>}
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
@@ -76,7 +67,7 @@ export default function SignupPage() {
                                     placeholder="Firstname"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
-                                    className="w-full px-4 py-3 bg-[#151515] border border-[#ef4444] rounded-2xl text-white placeholder-gray-500 focus:border-[#ef4444] focus:ring-1 focus:ring-[#ef4444] outline-none transition-all"
+                                    className="w-full px-4 py-2.5 bg-[#151515] border border-[#ef4444] rounded-2xl text-white placeholder-gray-500 focus:border-[#ef4444] focus:ring-1 focus:ring-[#ef4444] outline-none transition-all"
                                     required
                                 />
                             </div>
@@ -86,7 +77,7 @@ export default function SignupPage() {
                                     placeholder="Lastname"
                                     value={surname}
                                     onChange={(e) => setSurname(e.target.value)}
-                                    className="w-full px-4 py-3 bg-[#151515] border border-[#ef4444] rounded-2xl text-white placeholder-gray-500 focus:border-[#ef4444] focus:ring-1 focus:ring-[#ef4444] outline-none transition-all"
+                                    className="w-full px-4 py-2.5 bg-[#151515] border border-[#ef4444] rounded-2xl text-white placeholder-gray-500 focus:border-[#ef4444] focus:ring-1 focus:ring-[#ef4444] outline-none transition-all"
                                     required
                                 />
                             </div>
@@ -98,7 +89,7 @@ export default function SignupPage() {
                                 placeholder="Email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="w-full px-4 bg-[#151515] py-3   border border-[#ef4444]  rounded-2xl text-white placeholder-gray-500 focus:border-[#ef4444] focus:ring-1 focus:ring-[#ef4444] outline-none transition-all"
+                                className="w-full px-4 bg-[#151515] py-2.5   border border-[#ef4444]  rounded-2xl text-white placeholder-gray-500 focus:border-[#ef4444] focus:ring-1 focus:ring-[#ef4444] outline-none transition-all"
                                 required
                             />
                         </div>
@@ -109,14 +100,14 @@ export default function SignupPage() {
                                 placeholder="Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="w-full px-4 py-3 bg-[#151515] border  border-[#ef4444] rounded-2xl text-white placeholder-gray-500 focus:border-[#ef4444] focus:ring-1 focus:ring-[#ef4444] outline-none transition-all"
+                                className="w-full px-4 py-2.5 bg-[#151515] border  border-[#ef4444] rounded-2xl text-white placeholder-gray-500 focus:border-[#ef4444] focus:ring-1 focus:ring-[#ef4444] outline-none transition-all"
                                 required
                             />
                         </div>
 
                         <button
                             type="submit"
-                            className="w-full py-4 bg-[#ff0000] text-white rounded-full font-medium text-lg hover:bg-red-600 transition-colors shadow-lg shadow-red-500/20"
+                            className="w-full py-3 bg-[#ef4444] text-white rounded-full font-medium text-lg hover:bg-red-600 transition-colors shadow-lg shadow-red-500/20"
                         >
                             Get Started
                         </button>

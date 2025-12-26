@@ -13,6 +13,23 @@ export default function SettingsPage() {
     const [difficulty, setDifficulty] = useState('medium');
     const [soundEnabled, setSoundEnabled] = useState(true);
 
+    useEffect(() => {
+        const savedWordCount = localStorage.getItem('typing_wordCount');
+        const savedDifficulty = localStorage.getItem('typing_difficulty');
+        const savedSound = localStorage.getItem('typing_soundEnabled');
+
+        if (savedWordCount) setWordCount(savedWordCount);
+        if (savedDifficulty) setDifficulty(savedDifficulty);
+        if (savedSound) setSoundEnabled(savedSound === 'true');
+    }, []);
+
+    const updateSetting = (key: string, value: string | boolean) => {
+        localStorage.setItem(`typing_${key}`, String(value));
+        if (key === 'wordCount') setWordCount(String(value));
+        if (key === 'difficulty') setDifficulty(String(value));
+        if (key === 'soundEnabled') setSoundEnabled(Boolean(value));
+    };
+
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
@@ -155,7 +172,7 @@ export default function SettingsPage() {
                                 {['25', '50', '100'].map((count) => (
                                     <button
                                         key={count}
-                                        onClick={() => setWordCount(count)}
+                                        onClick={() => updateSetting('wordCount', count)}
                                         className="px-6 py-2 rounded-lg transition-all"
                                         style={{
                                             backgroundColor: wordCount === count ? '#ef4444' : 'rgba(255, 255, 255, 0.05)',
@@ -175,7 +192,7 @@ export default function SettingsPage() {
                                 {['easy', 'medium', 'hard'].map((level) => (
                                     <button
                                         key={level}
-                                        onClick={() => setDifficulty(level)}
+                                        onClick={() => updateSetting('difficulty', level)}
                                         className="px-6 py-2 rounded-lg transition-all capitalize"
                                         style={{
                                             backgroundColor: difficulty === level ? '#ef4444' : 'rgba(255, 255, 255, 0.05)',
@@ -232,7 +249,7 @@ export default function SettingsPage() {
                             <p className="text-sm" style={{ color: '#9ca3af' }}>Play sounds on keypress</p>
                         </div>
                         <button
-                            onClick={() => setSoundEnabled(!soundEnabled)}
+                            onClick={() => updateSetting('soundEnabled', !soundEnabled)}
                             className="px-6 py-2 rounded-lg transition-all"
                             style={{
                                 backgroundColor: soundEnabled ? '#ef4444' : 'rgba(255, 255, 255, 0.05)',
