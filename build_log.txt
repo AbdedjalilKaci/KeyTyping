@@ -1,0 +1,34 @@
+   ▲ Next.js 15.1.3
+   - Environments: .env
+
+   Creating an optimized production build ...
+(node:17532) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Failed to compile.
+
+src\app\layout.tsx
+An error occurred in `next/font`.
+
+ReferenceError: module is not defined in ES module scope
+This file is being treated as an ES module because it has a '.js' file extension and 'C:\Users\dz FB\Downloads\KeyTyping Speed Typing Website\package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension.
+    at file:///C:/Users/dz%20FB/Downloads/KeyTyping%20Speed%20Typing%20Website/postcss.config.js:1:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:271:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:547:26)
+    at async findConfig (C:\Users\dz FB\Downloads\KeyTyping Speed Typing Website\node_modules\next\dist\lib\find-config.js:85:25)
+    at async getPostCssPlugins (C:\Users\dz FB\Downloads\KeyTyping Speed Typing Website\node_modules\next\dist\build\webpack\config\blocks\css\plugins.js:89:18)
+    at async C:\Users\dz FB\Downloads\KeyTyping Speed Typing Website\node_modules\next\dist\build\webpack\config\blocks\css\index.js:124:36
+    at async C:\Users\dz FB\Downloads\KeyTyping Speed Typing Website\node_modules\next\dist\build\webpack\loaders\next-font-loader\index.js:86:33
+    at async Span.traceAsyncFn (C:\Users\dz FB\Downloads\KeyTyping Speed Typing Website\node_modules\next\dist\trace\trace.js:153:20)
+
+./src/app/api/auth/[...nextauth]/route.ts
+Module not found: Can't resolve '@next-auth/prisma-adapter'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./src/app/api/register/route.ts
+Module not found: Can't resolve 'zod'
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+> Build failed because of webpack errors
