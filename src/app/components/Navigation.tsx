@@ -25,21 +25,23 @@ export function Navigation() {
           <span className="text-xl" style={{ color: '#ffffff' }}>KeyTyping</span>
         </Link>
 
-        <div className="flex gap-6">
+        <div className="flex gap-8">
           <Link
             href="/home"
-            className="transition-colors"
+            className="transition-all hover:text-white relative group py-1"
             style={{ color: isActive('/home') ? '#ef4444' : '#9ca3af' }}
           >
             Test
+            {isActive('/home') && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#ef4444]" />}
           </Link>
           <Link
             href="/dashboard"
-            className="transition-colors flex items-center gap-2"
+            className="transition-all hover:text-white flex items-center gap-2 relative group py-1"
             style={{ color: isActive('/dashboard') ? '#ef4444' : '#9ca3af' }}
           >
             <Activity size={16} />
             Dashboard
+            {isActive('/dashboard') && <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#ef4444]" />}
           </Link>
         </div>
       </div>

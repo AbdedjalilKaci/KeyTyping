@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { hash } from 'bcryptjs';
 import { prisma } from '../../../lib/prisma';
 import { z } from 'zod';
+export const runtime = 'nodejs'
 
 const userSchema = z.object({
     email: z.string().email(),

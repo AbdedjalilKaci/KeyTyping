@@ -4,6 +4,7 @@ import { authOptions } from '../auth/[...nextauth]/route';
 import { prisma } from '../../../lib/prisma';
 import { hash } from 'bcryptjs';
 import { z } from 'zod';
+export const runtime = 'nodejs'
 
 const userUpdateSchema = z.object({
     name: z.string().min(2).optional(),

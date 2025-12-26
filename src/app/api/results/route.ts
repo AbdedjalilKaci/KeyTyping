@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]/route';
 import { prisma } from '../../../lib/prisma';
 import { z } from 'zod';
+export const runtime = 'nodejs'
 
 const resultSchema = z.object({
     wpm: z.number().int().min(0),
