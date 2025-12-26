@@ -3,7 +3,6 @@ import { hash } from 'bcryptjs';
 import { prisma } from '../../../lib/prisma';
 import { z } from 'zod';
 
-// Schema for input validation
 const userSchema = z.object({
     email: z.string().email(),
     password: z.string().min(6),
@@ -15,7 +14,6 @@ export async function POST(req: Request) {
         const body = await req.json();
         const { email, password, name } = userSchema.parse(body);
 
-        // Check if user exists
         const existingUser = await prisma.user.findUnique({
             where: { email },
         });
@@ -37,7 +35,6 @@ export async function POST(req: Request) {
             },
         });
 
-        // Don't return the password hash
         const { passwordHash: _, ...userWithoutPassword } = newUser;
 
         return NextResponse.json(

@@ -31,7 +31,6 @@ export default function LoginPage() {
 
     return (
         <div className="login h-screen w-screen overflow-hidden flex font-sans" style={{ backgroundColor: 'transparent' }}>
-            {/* Left Side - Form */}
             <div className="w-full lg:w-1/2 h-full flex items-center justify-center p-8 relative">
                 <div className="w-full max-w-md">
 
@@ -93,7 +92,6 @@ export default function LoginPage() {
                 </div>
             </div>
 
-            {/* Right Side - Image */}
             <div className="hidden lg:block w-1/2 h-full relative overflow-hidden">
                 <img
                     src="/Rectangle 7.png"

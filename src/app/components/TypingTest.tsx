@@ -1,5 +1,5 @@
 'use client';
-
+import axios from 'axios';
 import { useState, useEffect, useRef } from 'react';
 import { RotateCcw, Clock } from 'lucide-react';
 import { useSession } from 'next-auth/react';
@@ -43,7 +43,6 @@ export function TypingTest() {
   const [isFinished, setIsFinished] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Helper function to calculate WPM
   const getWPM = () => {
     const elapsed = selectedTime - timeLeft;
     if (elapsed === 0) return 0;
@@ -52,7 +51,6 @@ export function TypingTest() {
     return Math.round(wordsTyped / minutes);
   };
 
-  // Helper function to calculate Accuracy
   const getAccuracy = () => {
     if (currentIndex === 0) return 100;
     const correctChars = currentIndex - errors.size;
@@ -87,19 +85,14 @@ export function TypingTest() {
     }
   }, [startTime, isFinished, selectedTime]);
 
-  // Save result when finished
   useEffect(() => {
     if (isFinished && session?.user) {
       const saveResult = async () => {
         try {
-          await fetch('/api/results', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              wpm: getWPM(),
-              accuracy: getAccuracy(),
-              time: selectedTime,
-            }),
+          await axios.post('/api/results', {
+            wpm: getWPM(),
+            accuracy: getAccuracy(),
+            time: selectedTime,
           });
         } catch (err) {
           console.error('Failed to save result', err);
@@ -107,8 +100,7 @@ export function TypingTest() {
       };
       saveResult();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFinished, session]); // Only run when isFinished changes to true
+  }, [isFinished, session]);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (isFinished) return;
@@ -170,7 +162,6 @@ export function TypingTest() {
 
   return (
     <div className="w-full text-white max-w-5xl mx-auto px-4 py-8">
-      {/* Time Selector */}
       <div className="flex justify-center gap-4 mb-8">
         {TIME_OPTIONS.map((time) => (
           <button
@@ -189,12 +180,11 @@ export function TypingTest() {
         ))}
       </div>
 
-      {/* Typing Area */}
       <div
         onClick={handleContainerClick}
         className="w-full mb-8 p-8 rounded-2xl cursor-text relative transition-all"
         style={{
-          backgroundColor: 'rgba(239, 68, 68, 0.1)', // Red tint
+          backgroundColor: 'rgba(239, 68, 68, 0.1)',  
           border: '1px solid rgba(239, 68, 68, 0.2)',
           boxShadow: '0 8px 32px rgba(239, 68, 68, 0.1)',
           opacity: isFinished ? 0.5 : 1
@@ -205,15 +195,15 @@ export function TypingTest() {
           style={{ fontFamily: "'JetBrains Mono', monospace" }}
         >
           {text.split('').map((char, index) => {
-            let color = '#4b5563'; // Default color for untyped characters
+            let color = '#4b5563';  
             let decoration = '';
 
             if (index < currentIndex) {
-              color = errors.has(index) ? '#ef4444' : '#e5e7eb'; // Red for error, light gray for correct
+              color = errors.has(index) ? '#ef4444' : '#e5e7eb';  
             }
 
             if (index === currentIndex && !isFinished) {
-              decoration = '2px solid #ef4444'; // Cursor
+              decoration = '2px solid #ef4444';  
             }
 
             return (
@@ -244,7 +234,6 @@ export function TypingTest() {
         />
       </div>
 
-      {/* Stats Bar */}
       <div className="flex items-center justify-center gap-8 mb-4">
         <div className="text-center">
           <div className="text-sm uppercase tracking-wider mb-1" style={{ color: '#9ca3af' }}>
@@ -274,7 +263,6 @@ export function TypingTest() {
         </div>
       </div>
 
-      {/* Restart Button */}
       <div className="flex justify-center">
         <button
           onClick={handleRestart}
@@ -292,7 +280,6 @@ export function TypingTest() {
         </button>
       </div>
 
-      {/* Instructions */}
       <div className="mt-8 text-center" style={{ color: '#6b7280' }}>
         <p className="text-sm">Click anywhere on the typing area to start typing</p>
       </div>

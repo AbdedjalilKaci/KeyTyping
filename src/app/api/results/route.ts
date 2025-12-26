@@ -20,14 +20,12 @@ export async function GET(req: Request) {
     try {
         const userId = session.user.id;
 
-        // Fetch recent tests
         const recentTests = await prisma.result.findMany({
             where: { userId },
             orderBy: { createdAt: 'desc' },
             take: 10,
         });
 
-        // Calculate aggregates
         const aggregations = await prisma.result.aggregate({
             where: { userId },
             _avg: {

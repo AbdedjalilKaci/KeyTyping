@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Github } from 'lucide-react';
 import { signIn } from 'next-auth/react';
+import axios from 'axios';
 
 export default function SignupPage() {
     const [name, setName] = useState('');
@@ -19,20 +20,13 @@ export default function SignupPage() {
         setError('');
 
         try {
-            const res = await fetch('/api/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: `${name} ${surname}`,
-                    email,
-                    password,
-                }),
+            const res = await axios.post('/api/register', {
+                name: `${name} ${surname}`,
+                email,
+                password,
             });
 
-            if (res.ok) {
-                // Automatically sign in after registration
+            if (res.status === 200) {
                 const result = await signIn('credentials', {
                     redirect: false,
                     email,
@@ -46,7 +40,7 @@ export default function SignupPage() {
                     router.push('/home');
                 }
             } else {
-                const data = await res.json();
+                const data = await res.data;
                 setError(data.message || 'Registration failed');
             }
         } catch (err) {
@@ -56,7 +50,6 @@ export default function SignupPage() {
 
     return (
         <div className="signup h-screen w-screen overflow-hidden flex font-sans" style={{ backgroundColor: 'transparent' }}>
-            {/* Left Side - Image */}
             <div className="hidden lg:block w-1/2 h-full relative overflow-hidden">
                 <img
                     src="/Rectangle 7.png"
@@ -65,7 +58,6 @@ export default function SignupPage() {
                 />
             </div>
 
-            {/* Right Side - Form */}
             <div className="w-full lg:w-1/2 h-full flex items-center justify-center p-8 relative">
                 <div className="w-full max-w-md">
 

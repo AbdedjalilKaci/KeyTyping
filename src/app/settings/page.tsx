@@ -84,7 +84,6 @@ export default function SettingsPage() {
                 </h1>
                 <p className="mb-8" style={{ color: '#9ca3af' }}>Customize your typing experience</p>
 
-                {/* Account Settings */}
                 <div
                     className="p-8 rounded-xl mb-6"
                     style={{ backgroundColor: 'rgba(15, 23, 42, 0.6)', border: '1px solid rgba(255, 255, 255, 0.05)' }}
@@ -143,7 +142,6 @@ export default function SettingsPage() {
                     </form>
                 </div>
 
-                {/* Test Settings */}
                 <div
                     className="p-8 rounded-xl mb-6"
                     style={{ backgroundColor: 'rgba(15, 23, 42, 0.6)', border: '1px solid rgba(255, 255, 255, 0.05)' }}
@@ -193,7 +191,6 @@ export default function SettingsPage() {
                     </div>
                 </div>
 
-                {/* Appearance Settings */}
                 <div
                     className="p-8 rounded-xl mb-6"
                     style={{ backgroundColor: 'rgba(15, 23, 42, 0.6)', border: '1px solid rgba(255, 255, 255, 0.05)' }}
@@ -223,7 +220,6 @@ export default function SettingsPage() {
                     </div>
                 </div>
 
-                {/* Audio Settings */}
                 <div
                     className="p-8 rounded-xl"
                     style={{ backgroundColor: 'rgba(15, 23, 42, 0.6)', border: '1px solid rgba(255, 255, 255, 0.05)' }}

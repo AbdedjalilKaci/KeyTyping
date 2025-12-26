@@ -4,7 +4,6 @@ import { Keyboard, Activity } from 'lucide-react';
 export default function LandingPage() {
     return (
         <div className="min-h-screen flex flex-col" style={{ backgroundColor: 'transparent', fontFamily: 'Inter, sans-serif' }}>
-            {/* Header */}
             <header className="px-6 py-4 flex items-center justify-between" style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.05)' }}>
                 <div className="flex items-center gap-2">
                     <span className="text-4xl">⌨</span>
@@ -28,7 +27,6 @@ export default function LandingPage() {
                 </div>
             </header>
 
-            {/* Hero Section */}
             <main className="flex-1 flex flex-col items-center justify-center px-6 py-20 relative">
                 <div className="max-w-4xl text-center mb-12">
                     <h1 className="text-6xl mb-6 font-light" style={{ color: '#ffffff', fontFamily: '"Caveat", cursive' }}>
@@ -46,14 +44,13 @@ export default function LandingPage() {
                     </Link>
                 </div>
 
-                <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-center animate-bounce">
+                {/* <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-center animate-bounce">
                     <p className="text-sm mb-2" style={{ color: '#ffffff' }}>View More</p>
                     <div className="w-6 h-10 border-2 rounded-full flex justify-center p-1" style={{ borderColor: '#ef4444' }}>
                         <div className="w-1 h-2 rounded-full" style={{ backgroundColor: '#ef4444' }} />
                     </div>
-                </div>
+                </div> */}
 
-                {/* Features */}
                 <div className="grid md:grid-cols-3 gap-8 max-w-5xl mt-16">
                     <div
                         className="p-6 rounded-xl"
@@ -84,7 +81,6 @@ export default function LandingPage() {
                 </div>
             </main>
 
-            {/* Footer */}
             <footer className="px-6 py-6 text-center" style={{ borderTop: '1px solid rgba(255, 255, 255, 0.05)', color: '#6b7280' }}>
                 <p>© 2024 KeyTyping. All rights reserved.</p>
             </footer>

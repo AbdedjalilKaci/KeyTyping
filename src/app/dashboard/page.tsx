@@ -69,7 +69,6 @@ export default function DashboardPage() {
             <main className="max-w-7xl mx-auto px-6 py-12">
                 <h1 className="text-4xl mb-8" style={{ color: '#ffffff' }}>Dashboard</h1>
 
-                {/* Stats Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
                     <div
                         className="p-6 rounded-xl"
@@ -104,7 +103,6 @@ export default function DashboardPage() {
                     </div>
                 </div>
 
-                {/* Recent Tests */}
                 <div
                     className="p-6 rounded-xl"
                     style={{ backgroundColor: 'rgba(15, 23, 42, 0.6)', border: '1px solid rgba(255, 255, 255, 0.05)' }}

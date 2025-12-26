@@ -8,7 +8,6 @@ export default function ProfilePage() {
     const { data: session } = useSession();
     const user = session?.user;
 
-    // Type assertion for user id since it might not be in the default type definition
     const userId = (user as any)?.id || 'Loading...';
 
     return (
@@ -98,7 +97,6 @@ export default function ProfilePage() {
                     </div>
                 </div>
 
-                {/* Statistics Section */}
                 <div
                     className="p-8 rounded-xl"
                     style={{ backgroundColor: 'rgba(15, 23, 42, 0.6)', border: '1px solid rgba(255, 255, 255, 0.05)' }}
