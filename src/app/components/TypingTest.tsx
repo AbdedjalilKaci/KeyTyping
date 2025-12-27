@@ -37,8 +37,8 @@ export function TypingTest() {
   const [timeLeft, setTimeLeft] = useState(30);
   const [selectedTime, setSelectedTime] = useState(30);
   const [isFinished, setIsFinished] = useState(false);
-  const [totalTyped, setTotalTyped] = useState(0);
-  const [totalErrors, setTotalErrors] = useState(0);
+  const [totalKeystrokes, setTotalKeystrokes] = useState(0);
+  const [correctKeystrokes, setCorrectKeystrokes] = useState(0);
   const [settings, setSettings] = useState({
     wordCount: 50,
     difficulty: 'medium',
@@ -97,15 +97,21 @@ export function TypingTest() {
 
   const getWPM = () => {
     const elapsed = selectedTime - timeLeft;
-    if (elapsed === 0) return 0;
+    if (elapsed <= 0) return 0;
     const minutes = elapsed / 60;
-    const wordsTyped = currentIndex / 5;
-    return Math.round(wordsTyped / minutes);
+    return Math.round((correctKeystrokes / 5) / minutes);
+  };
+
+  const getRawWPM = () => {
+    const elapsed = selectedTime - timeLeft;
+    if (elapsed <= 0) return 0;
+    const minutes = elapsed / 60;
+    return Math.round((totalKeystrokes / 5) / minutes);
   };
 
   const getAccuracy = () => {
-    if (totalTyped === 0) return 100;
-    return Math.max(0, Math.round(((totalTyped - totalErrors) / totalTyped) * 100));
+    if (totalKeystrokes === 0) return 100;
+    return Math.round((correctKeystrokes / totalKeystrokes) * 100);
   };
 
   useEffect(() => {
@@ -163,6 +169,7 @@ export function TypingTest() {
     }
 
     if (value.length < userInput.length) {
+      setTotalKeystrokes(prev => prev + 1);
       const charIndex = userInput.length - 1;
       setErrors(prev => {
         const newErrors = new Set(prev);
@@ -179,13 +186,12 @@ export function TypingTest() {
     const charIndex = value.length - 1;
     const isCorrect = value[charIndex] === text[charIndex];
 
-    setTotalTyped(prev => prev + 1);
-    if (!isCorrect) {
-      setTotalErrors(prev => prev + 1);
+    setTotalKeystrokes(prev => prev + 1);
+    if (isCorrect) {
+      setCorrectKeystrokes(prev => prev + 1);
     }
 
     playSound(!isCorrect);
-
     setUserInput(value);
     setCurrentIndex(value.length);
 
@@ -209,8 +215,8 @@ export function TypingTest() {
     setUserInput('');
     setCurrentIndex(0);
     setErrors(new Set());
-    setTotalTyped(0);
-    setTotalErrors(0);
+    setTotalKeystrokes(0);
+    setCorrectKeystrokes(0);
     setStartTime(null);
     setTimeLeft(selectedTime);
     setIsFinished(false);
@@ -303,6 +309,15 @@ export function TypingTest() {
           </div>
           <div className="text-4xl tabular-nums" style={{ color: '#ef4444', fontFamily: "'JetBrains Mono', monospace" }}>
             {getWPM()}
+          </div>
+        </div>
+
+        <div className="text-center">
+          <div className="text-sm uppercase tracking-wider mb-1" style={{ color: '#9ca3af' }}>
+            Raw
+          </div>
+          <div className="text-4xl tabular-nums" style={{ color: '#ffffff', fontFamily: "'JetBrains Mono', monospace" }}>
+            {getRawWPM()}
           </div>
         </div>
 
