@@ -8,13 +8,17 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true, 
   },
-    images: {
+  images: {
     remotePatterns: [
       {
         protocol: 'https',
         hostname: '**',
       },
     ],
+  },
+  // Ensure API routes work correctly on Vercel
+  experimental: {
+    serverComponentsExternalPackages: ['@prisma/client', 'bcryptjs'],
   },
 };
 

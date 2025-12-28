@@ -3,6 +3,15 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { compare } from 'bcryptjs';
 import { prisma } from './prisma';
 
+// Validate required environment variables for production
+if (process.env.NODE_ENV === 'production' && !process.env.NEXTAUTH_SECRET) {
+    throw new Error('NEXTAUTH_SECRET is required in production. Please set it in your Vercel environment variables.');
+}
+
+if (process.env.NODE_ENV === 'production' && !process.env.NEXTAUTH_URL) {
+    console.warn('⚠️ NEXTAUTH_URL is not set. This may cause issues in production. Please set it to your production URL in Vercel environment variables.');
+}
+
 export const authOptions: NextAuthOptions = {
     session: {
         strategy: 'jwt',
